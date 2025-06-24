@@ -1,0 +1,17 @@
+const express = require("express");                      // use the 'express' library to start the app server
+const app = express();                                   // make a new app 
+const server = require('http').Server(app);              // and create an http server for the app
+const io = require('socket.io')(server);                 // then create a socket using that server that clients can connect to
+const port = 3000;                                       // specify the port where communication will happen
+
+server.listen(port, () => {                              //set up server to listen on specified port
+  console.log('server is listening on port ' + port);    // print to the server console to log that the server is running
+});
+
+app.use(express.static("public"));                       // make all the files in 'public' available
+
+io.on('connection', (socket) => {                        // when a client has connected...
+  socket.on('outgoingData', (data) => {                  // and the client sends something called "outgoingData"...
+    socket.broadcast.emit('incomingData', data);         // send whatever was received to everyone else who is connected
+  });
+});
