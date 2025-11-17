@@ -15,9 +15,6 @@
   "engines": {
     "node": "12.x"
   },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/simpler-socket"
-  },
   "license": "MIT",
   "keywords": [
     "node",
