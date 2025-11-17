@@ -2,7 +2,7 @@ const express = require("express");                      // use the 'express' li
 const app = express();                                   // make a new app 
 const server = require('http').Server(app);              // and create an http server for the app
 const io = require('socket.io')(server);                 // then create a socket using that server that clients can connect to
-const port = 3000;                                       // specify the port where communication will happen
+const port = process.env.PORT || 3000;                                 // specify the port where communication will happen
 
 server.listen(port, () => {                              //set up server to listen on specified port
   console.log('server is listening on port ' + port);    // print to the server console to log that the server is running
